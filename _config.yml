@@ -1,0 +1,13 @@
+# 网站基本设置 (保留原有的)
+title: 你的数学分析笔记
+# ...
+
+# 关键配置：配置 Markdown 处理器
+markdown: kramdown
+kramdown:
+  # 告诉 Kramdown 不要对行内和块级公式进行任何处理。
+  # 这样 $...$ 和 $$...$$ 会被原封不动地传递给浏览器端的 MathJax。
+  parse_block_html: true
+  math_engine: mathjax
+  # 禁用自动转义下划线，这是 $...$ 冲突的主要原因
+  skip_html_validation: true
