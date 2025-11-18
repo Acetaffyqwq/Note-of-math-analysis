@@ -1,0 +1,4 @@
+title: 你的数学分析笔记
+description: 这是一个使用 GitHub Pages 渲染的数学笔记。
+# 告诉 Jekyll 使用您的自定义布局
+layouts_dir: _layouts
