@@ -8,3 +8,5 @@ title: 数学分析笔记
 [数列极限](./1-sequence-limit.html)
 
 [实数系基本定理&收敛准则](./2-real-number-system.html)
+
+[函数极限](./3-func-limit)
