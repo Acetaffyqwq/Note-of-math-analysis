@@ -23,3 +23,4 @@ kramdown:
   math_engine: mathjax
   # 禁用自动转义下划线，这是 $...$ 冲突的主要原因
   skip_html_validation: true
+permalink: /:title:output_ext

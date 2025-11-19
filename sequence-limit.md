@@ -1,6 +1,11 @@
+---
+layout: default
+title: sequence-limit
+---
+
 ## 无穷小量
 
-对于数列 $\{x_n\}$，$\forall \epsilon \exist N,\forall n>N,|x_n|<\epsilon$，则为无穷小量， $\lim_{n\to \infty} x_n = 0$ 。
+对于数列 $\{x_n\}$，$\forall \epsilon \exists N,\forall n>N,\mid x_n\mid<\epsilon$，则为无穷小量， $\lim_{n\to \infty} x_n = 0$ 。
 
 ---
 
@@ -34,7 +39,7 @@ $\dfrac{1}{n}$ 结构是最常见的无穷小量，往这方面凑就行。
 
 令 $y_n={x_n}-a$，$y_n$ 是无穷小量。
 
-$\forall \epsilon,\exist N , \text{s.t} \forall n> N,|y_n|<\epsilon/2$。
+$\forall \epsilon,\exists N , \text{s.t} \forall n> N,\mid y_n\mid <\epsilon/2$。
 
 $s=\sum_{i=1}^N y_i$。
 
@@ -56,7 +61,7 @@ $s=\sum_{i=1}^N y_i$。
 
 - 保序性
 
-，$\exist N,\forall n> N, x_n\le y_n$，$\lim_{n\to \infty} x_n\le \lim_{n\to \infty} y_n$。
+，$\exists N,\forall n> N, x_n\le y_n$，$\lim_{n\to \infty} x_n\le \lim_{n\to \infty} y_n$。
 
 如果在远处全部有偏序，那么极限肯定也有偏序。
 
@@ -78,7 +83,7 @@ $s=\sum_{i=1}^N y_i$。
 
 ## 无穷大量
 
-对于数列 $\{x_n\}$，$\forall \epsilon \exist N,\forall n>N,x_n>\epsilon$，则为无穷小量， $\lim_{n\to \infty} x_n = \infty$ 。
+对于数列 $\{x_n\}$，$\forall \epsilon \exists N,\forall n>N,x_n>\epsilon$，则为无穷小量， $\lim_{n\to \infty} x_n = \infty$ 。
 
 由于 $\dfrac{1}{x_n}=y_n$ 可以实现无穷大量和无穷小量的相互转化，所以没什么计算 trick。
 
