@@ -191,7 +191,7 @@ $$
 
 $$
 \frac{f(b)+f(a)-2f(\frac{a+b}{2})}{(\frac{b-a}{2})^2}=\frac{g(a+d)-g(a)}{d^2}\\
-\exist \eta,g'(\eta)=\frac{g(a+d)-g(a)}{d}=f'(\eta+d)-f'(\eta)\\
+\exists \eta,g'(\eta)=\frac{g(a+d)-g(a)}{d}=f'(\eta+d)-f'(\eta)\\
 \frac{g(a+d)-g(a)}{d^2}=\frac{f'(\eta+d)-f'(\eta)}{d}=f''(\xi)
 $$
 
