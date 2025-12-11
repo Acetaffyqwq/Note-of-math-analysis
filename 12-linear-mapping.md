@@ -123,7 +123,8 @@ $$
 定义核 (Kernel) 为 $V'$ 的 $0$ 对应的原像，也就是：
 
 $$
-\ker(f)=\{x|x\in V,fx=0'\}
+\ker(f)=\{x|x\in V,fx=0'\}\\
+\text{rank}(f) = \dim \ker f
 $$
 
 - 核是 $V$ 的子空间。
@@ -186,6 +187,234 @@ $$
 
 - $V$ 的任何一个子空间可以看成到补空间上投影的核。
 
-所以核的理论和投影是密切相关的。
+因此，投影是幂等变换，幂等变换也一定可以表示为投影。
 
-回顾之前的知识，对于线性方程组 $Ax=0$，把 $A$ 看成线性映射，解空间就是 $\ker A$，而 $\dim \text{Im}$ 就是矩阵的秩（线性表出的维数等于秩的维数），那么很容易说明秩，解空间和 $n$ 的关系了。
+直观的理解：如果把映射看成是类似排列上的结构，那么幂等变换就是深度是一，环是自环的基环树森林。而投影同样满足类似的结构。
+
+回顾之前的知识，对于线性方程组 $Ax=0$，把 $A$ 看成线性映射，解空间就是 $\ker A$，而 $\dim \text{Im}$ 就是矩阵的秩（线性表出的维数等于秩的维数），那么很容易说明秩，解空间和 $n$ 的关系了，$\text{rank} f=\dim \text{Im} f$。
+
+最后引入「余核」的概念，一个线性映射的余核是：
+
+$$
+\text{Coker} f=V'/\text{Im} f
+$$
+
+这个是用来考虑陪集的结构，暂时还不知道有啥用。
+
+## 杂题 2
+
+> 有 $A:V\longmapsto W,B:W\longmapsto U$，证明：
+> 
+> $$
+> \dim(\ker BA)\le \dim (\ker A)+\dim(\ker B)
+>$$
+
+$$
+\dim(\ker BA)=\dim V-\dim \text{Im} BA\\
+= \dim V-\dim \text{Im} (B|AV)\\
+= \dim \ker A+\dim (AV) - \dim \text{Im} (B|AV) \\
+= \dim \ker A+\dim \ker(B|AV)\\
+\le \dim (\ker A)+\dim(\ker B)
+$$
+
+可以不断 $\ker,\text{Im}$ 变换的性质很优秀。
+
+> 有 $A:V\longmapsto W,B:W\longmapsto U,\dim W=m$，证明：
+> 
+> $$
+> \text{rank}(BA)\ge \text{rank}(A)+\text{rank}(B)-m
+>$$
+
+$$
+\text{rank}(BA)+m=\dim \text{Im} (B\vert AV)+m\\
+=\text{rank}(A)+m-\dim \ker (B|AV)\\
+\ge \text{rank}(A)+\dim W-\dim \ker B\\
+=\text{rank}(A)+\text{rank}(B)
+$$
+
+会发现 $W\supseteq AV$ 是很常用的放缩。
+
+>  有 $A:V\longmapsto W,B:W\longmapsto U,C:U\longmapsto M$，证明：
+> 
+> $$
+> \text{rank}(CBA)\ge \text{rank}(BA)+\text{rank}(CB)-\text{rank}(B)
+>$$
+
+$$
+\text{rank}(CBA)+\text{rank}(B)=\dim \text{Im} (C|BAV)+\text{rank}(B)\\
+= \text{rank} (BA)+\text{rank}(B) - \dim \ker(C|BAV)\\
+\ge \text{rank} (BA)+\text{rank}(B) - \dim \ker(C|BW)\\
+= \text{rank}(BA)+\text{rank}(CB)
+$$
+
+会发现和上面一题的证明思路是非常类似的，并且如果是更多项乘起来也可以用这个东西去拆。
+
+> $A$ 是 $V$ 上线性变换，$\dim V=n$，证明存在 $m$，满足
+>
+>$$
+>A^{m+1}V=A^mV
+>$$
+
+$\dim A^{i+1}V\le \dim A^{i}V$，找到相等的，说明核是 $0$，因此可以说明单射然后双射。
+
+## 矩阵表示线性映射
+
+$f:V\longmapsto V',\dim V=n,\dim V'=m$，那么 $\text{Hom} (V,V')$ 可以用 $m\times n$ 的矩阵来表示。
+
+向量表示线性空间中一个元素的坐标，因此先要确定 $V$ 内的一组基 $\alpha_1,\alpha_2...,\alpha_n$，$V'$ 内的一组基 $\beta_1,\beta_2,...,\beta_m$。
+
+由于线性映射是由基的映射决定的，因此我们只需要知道 $(f\alpha_1,f\alpha_2,...,f\alpha_n)$，确定他们在 $V'$ 下的坐标。
+
+于是有：
+
+$$
+(f\alpha_1,f\alpha_2,...,f\alpha_n)=(\beta_1,\beta_2,...,\beta_m)A
+$$
+
+$A$ 是一个 $m\times n$ 的矩阵，相当于把左边每一项确定其坐标。
+
+可以记为：
+
+$$
+f\alpha=\beta A
+$$
+
+所以我们就确定了在 $(\alpha,\beta)$ 这组基下，线性映射 $f$ 对应矩阵 $A$。
+
+由于 $\beta$ 是一组基，所以给定了基之后，一个线性映射对应的矩阵肯定是唯一的。
+
+对于线性变换，一般认为 $\alpha=\beta$，此时矩阵也变成方阵。
+
+从线性映射的角度来定义矩阵，仔细验证一下发现矩阵加法，数乘，乘法等运算是完全等价定义的。
+
+确定基后把线性映射到对应矩阵的映射建出来，验证一下发现是线性映射，并且是双射，因此同构，也就是说每个矩阵都必然能找到一个对应的线性映射。
+
+从这个方面想，也容易验证 $\dim M_{m\times n}(F)=m\times n$。
+
+也就是得到简单结论 $\dim \text{Hom}(V,V')=\dim V\times \dim V'$。
+
+---
+
+统一符号，矩阵 $A$ 对应线性变换 $\mathcal A$。
+
+由于矩阵和线性映射的对应会发现乘法是完全等价的，所以有：
+
+- 矩阵 $A$ 可逆，线性映射 $f$ 可逆，并且对应。
+
+- 矩阵 $A$ 幂等，线性映射也是幂等。
+
+把乘法等价具体写出来：
+
+$$
+\mathcal A\alpha= \alpha A\\
+$$
+
+然后我们讨论，如果经过两个变换，如何转化为矩阵：
+
+$$
+\mathcal{AB} \alpha=\mathcal A (\alpha B)
+$$
+
+注意这里**不能**直接变成 $(\alpha B)A$，为什么呢？因为 $\mathcal A \alpha =\alpha A$ 这一步基于 $\mathcal A$ 作用于 $\alpha$ 这组基，但是 $\alpha B$ 不再是原来的基，所以对应的矩阵当然不一样。
+
+此时要用超级关键的性质：由于线性变换是支持加法保留的，也就是我右边进行线性变换，加法会“穿过”线性变换，具体写出来就是：
+
+$$
+\mathcal A \alpha B=\mathcal A(\sum \alpha_i b_{i,1},\sum \alpha_i b_{i,2},...)\\
+=(\sum \mathcal A \alpha_i b_{i,1},\sum \mathcal A \alpha_i b_{i,2}...)\\
+=(\mathcal A \alpha)B\\
+=\alpha (AB)
+$$
+
+可以简单记为 $\alpha$ （标量）可以直接闯过线性方程组变换而保持顺序不变，而不能记为先进行 $B$ 变换再进行 $A$ 变换。
+
+然后可以有一些简单的例子，比如我知道 $\alpha$ 下一个点的坐标 $X$，然后我对其进行 $\mathcal A$ 变换，怎么求变换后的坐标呢。
+
+$$
+\mathcal A(\alpha X)=\alpha (AX)
+$$
+
+可以发现这个时候 $A$ 必须在 $X$ 前面，不然乘不了，和上面推理符合。
+
+---
+
+然后研究，取不同的基，有什么性质。
+
+假设 $V$ 上两组基 $\alpha,\eta$，那么肯定有矩阵 $S$ 满足 $\alpha S=\eta$，这个 $S$ 叫做过渡矩阵。
+
+对于线性变换 $\mathcal A$，设：
+
+$$
+\mathcal A \alpha =\alpha A\\
+\mathcal A \eta=\eta B
+$$
+
+- 矩阵 $S$ 是可逆矩阵。
+
+把定义拿出来，线性方程组只有 $0$ 解来证，不太难。
+
+$$
+\mathcal A \eta=\mathcal A (\alpha S)\\
+=\alpha AS=\alpha SB\\
+A=SBS^{-1}\\
+B=S^{-1}AS
+$$
+
+也就是一个线性变换在不同的基下对应的矩阵相似。
+
+然后也可以证明，如果两个矩阵相似，必然存在一个线性变换，使得这个线性变换可以取两个基使得对应矩阵分别是这两个矩阵。
+
+构造方法就是一个基是单位，另一个取 $S$ 的行向量就行。
+
+## 相似矩阵性质
+
+我们定义 $A,B\in M_{n\times n}(F)$，如果 $\exists M$，$M$ 是可逆矩阵，并且有 $A=M^{-1}B M$，那么说 $A,B$ **相似**。
+
+容易验证相似是一个等价关系，可以把 $M_{n}(F)$ 划分成若干等价类。
+
+现在从矩阵视角研究相似矩阵有什么性质。
+
+- $|MM^{-1}|=1\to |A|=|B|$。
+
+- $\text{rank}A=\text{rank}(M^{-1}BM)=\text{rank}(B)$
+
+> 定义，矩阵的迹 $\text{tr}(A)$ 表示方阵 $A$ 的对角线元素之和。
+
+迹有一些很基本的性质的：
+
+- $\text{tr}(A+B)=\text{tr}(A)+\text{tr}(B)$
+
+- $\text{tr}(kA)=k\text{tr}(A)$
+
+- $\text{tr}(AB)=\text{tr}(BA)$
+
+有了交换律，那么很简单，如果 $A,B$ 相似，那么有：
+
+- $\text{tr}(A)=\text{tr}(B)$
+
+因此我们得到，一个相似等价类中不变量有：行列式，秩，迹。
+
+因此可以定义线性变换的的行列式等于对应矩阵的行列式，因为都是相同的，同理线性变换的迹就是对应矩阵的迹。
+
+至于秩，已经有自己的定义是 $\dim \text{Im} \mathcal A$，而可以证明和对应矩阵的秩相同。
+
+## 杂题 3
+
+> $\mathcal A$ 是 $n$ 维线性空间 $V$ 上面的一个线性变换，证明：
+>
+> - 存在一次数不超过 $n^2$ 的多项式 $f$ 满足 $f(\mathcal A)=0$。
+>
+> - $\mathcal A$ 可逆当且仅当存在常数项不是 $0$ 多项式 $f$ 满足 $f(\mathcal A)=0$。
+
+因为 $A^k\in \text{Hom}(V,V),\dim \text{Hom} (V,V) =n^2$，所以 $A^0,A^1,...,A^{n^2}$ 必然线性相关，因此存在。
+
+充分：由上一个可知存在一个多项式 $f(\mathcal A)=0$，如果常数项是 $0$ 左右同时乘 $A^{-1}$ 即可。
+
+必要：
+
+$$
+\sum_{i=0}^m a_iA^i=0,a_0\ne 0\\
+\sum_{i=1}^m a_iA^i=-a_0I\\
+A(\sum_{i=0}^{m-1}a_{i+1}A^i)=-a_0I\\
+A^{-1}=-\frac{1}{a_0}(\sum_{i=0}^{m-1}a_{i+1}A^i)
+$$
