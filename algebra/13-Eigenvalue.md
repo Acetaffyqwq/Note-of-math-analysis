@@ -264,6 +264,128 @@ $$
 - $\ker f(\mathcal A)=\ker f_1(\mathcal A)\bigoplus \ker f_2(\mathcal A)$。
 
 $$
-\forall x\in \ker f_1(\mathcal A)\\
-f_1(A)
+\forall x\in \ker f_1(\mathcal A)+f_2(\mathcal A)\\
+x=\alpha + \beta ,f_1(\mathcal A)\alpha=f_2(\mathcal A)\beta=0\\
+f(\mathcal A)x=f(\mathcal A)(\alpha +\beta)=0\\
+\ker f(\mathcal A)\supseteq \ker f_1(\mathcal A)+\ker f_2(\mathcal A)
 $$
+
+反过来，类似于分解成两部分，一个对应 $\ker f_1$，另一个是 $\ker f_2$。
+
+$$
+f(\mathcal A)x=0\\
+x=Ix=(u(\mathcal A)f_1(\mathcal A)+v(\mathcal A)f_2(\mathcal A))x\\
+f_2(\mathcal A)u(\mathcal A)f_1(\mathcal A)x=u(\mathcal A)f(\mathcal A)x=0\\
+u(\mathcal A)f_1(\mathcal A)x\in \ker f_2(\mathcal A)\\
+v(\mathcal A)f_2(\mathcal A)x\in \ker f_1(\mathcal A)\\
+x\in \ker f_1(\mathcal A)+\ker f_2(\mathcal A)
+$$
+
+中间那一步是因为 $f\in F[\mathcal A]$ 都可交换。
+
+所以 $f(\mathcal A)\subseteq f_1(\mathcal A)+f_2(\mathcal A)$。
+
+所以 $f(\mathcal A)=f_1(\mathcal A)+f_2(\mathcal A)$。
+
+$$
+\forall x\in \ker f_1(\mathcal A) \cup \ker f_2(\mathcal A)\\
+x=(u(\mathcal A)f_1(\mathcal A)+v(\mathcal A)f_2(\mathcal A))x=0\\
+\ker f_1(\mathcal A)\cup \ker f_2(\mathcal A)=\{0\}
+$$
+
+证明了两者是直和。
+
+同理可以归纳证明，如果拆分成若干互素的东西不可拆多项式，那么就是每一个 $\ker$ 直和起来。
+
+回顾我们的目标：我们需要把 $V$ 分解成若干个 $\ker f$，因此有：
+
+$$
+V=\ker f=\bigoplus \ker f_i
+$$
+
+因此只需要找到一个 $f(\mathcal A)$ 使得 $\ker f(\mathcal A)=V$。
+
+回顾 $\ker$ 的定义，等价于 $f(\mathcal A)=0$。
+
+因此定义 $f(\mathcal A)=0$ 的多项式是**零化多项式**。
+
+---
+
+那么我们任务变成，去寻找 $\mathcal A$ 的零化多项式。
+
+- 对于 $\dim V=n,\mathcal A: V\longmapsto V$，必然存在次数不超过 $n^2$ 零化多项式。
+
+由于 $\dim \text{Hom}(V,V)=n^2$，所以 $I,\mathcal A,...\mathcal A^{n^2}$ 必然线性相关，因此存在零化多项式。
+
+但是我们还是需要找一个，具体的能表示出来的零化多项式。
+
+- $f(\lambda)=|\lambda I-A|$ 是 $A$ 的特征多项式，$f(A)=0$。
+
+求行列式，会想到可以相似矩阵做。
+
+$$
+(\lambda I-A)(\lambda I-A)^*=|\lambda I-A|I
+$$
+
+左右都是 $M_{n\times n}(F[\lambda])$，因此相当于是每个 $\lambda^i$ 的系数是一个矩阵，要满足左右的 $\lambda^i$ 的系数矩阵相同。
+
+假设 $|\lambda I-A|=\sum_{i=0}^n a_i\lambda^i$，那么右边就是 $\sum_{i=0}^n \lambda^ia_iI$。
+
+左边东西看起来比较复杂，$(\lambda I-A)^*$，不超过 $n-1$ 次，我们写成 $\sum_{i=0}^{n-1} \lambda^iB_i$。
+
+$$
+(\lambda I-A)(\lambda I-A)^*=\sum_{i=1}^{n}\lambda^{i}B_{i-1}-\sum_{i=0}^{n-1}\lambda^iAB_i\\
+-AB_0=a_0I\\
+B_0-AB_1=a_1I\\
+B_1-AB_2=a_2I\\
+\cdots\\
+B_{n-1}=a_nI
+$$
+
+此时关键一步：第 $i$ 个式子左右同时乘以 $A^i$，得到：
+
+$$
+0=\sum_{i=0}^n a_i A^i
+$$
+
+得证，特征多项式是零化多项式。
+
+---
+
+- 定义，零化多项式中次数最小并且首项是 $1$ 的多项式是「最小多项式」。
+
+探究其性质。
+
+- 线性变换的最小多项式等于它对应的矩阵的最小多项式。
+
+考虑由于我们是选择一组基，在一组基下是 $0$ ，说明对应的矩阵肯定是 $0$ 矩阵。
+
+- 相似矩阵最小多项式相同。
+
+- 如果 $f(x)$ 是零化多项式，那么 $g(x)=u(x)f(x)$ 也肯定是零化多形式。
+
+- 如果 $f(x)$ 是零化多项式，那么 $f(x)$ 一定是最小多项式 $M(x)$ 乘上 $g(x)$ 形式。
+
+后一个证明考虑多项式带余除法，除出来的余数肯定不是零化多项式所以矛盾。
+
+而我们已知了一个零化多项式 $|\lambda I-A|$，设 $|x I-A|=p(x)=\sum a_ix^i,M(x)=\sum b_i x^i$。
+
+考虑对于任意 $p(x)$ 的根 $\lambda$，有特征向量 $Ax=\lambda x$。
+
+$$
+M(A)x=\sum b_i A^ix=\sum b_i\lambda^i x=M(\lambda)x=0\\ 
+$$
+
+直接得到 $\lambda$ 是最小多项式的根，也就是特征多项式和最小多项式有相同的根（只是重数可能不同）。
+
+然后分析，我们划分成的子空间的最小多项式性质。
+
+假设 $V=\bigoplus _{i=1}^m V_i$，$V$ 的最小多项式是 $m(V)$。
+
+首先，如果 $F(x)$ 是所有 $m(V_i)$ 的公倍式，那么在每个子空间内都是零化多项式，所以 $F(x)$ 就是 $V$ 的零化多项式。
+
+反过来，我们也可以证明，如果 $F(x)$ 是 $V$ 的零化多项式，那么它一定是 $m(V_i)$ 的公倍式，因为如果不是，对于一个 $m(V_i)$，直接多项式取模就可以证明余数肯定爆了。
+
+也就是零化多项式集合和公倍式集合相同。
+
+因此「最小多项式」就是「最小公倍式」。
